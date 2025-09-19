@@ -42,18 +42,17 @@ A conexão foi estabelecida com sucesso, validando que a configuração da inst�
 
 Após o primeiro acesso, realizei a atualização dos pacotes do sistema operacional para garantir que todos os softwares estivessem com as últimas correções de segurança.
 
-bash
-
-
 # Atualiza a lista de pacotes disponíveis
 sudo apt update
 
 # Instala as atualizações dos pacotes
 sudo apt upgrade -y
+
 Durante o processo de upgrade, o sistema informou que uma nova versão do Kernel estava disponível e que uma reinicialização era recomendada para ativá-la. Para aplicar a atualização do Kernel e garantir que o sistema operacional utilize a versão mais recente e segura, executei o comando de reinicialização:
 
 # Reinicializa o Kernel
 sudo reboot
+
 Após a reinicialização, conectei-me novamente à instância para confirmar que o sistema estava operando normalmente.
 
 
