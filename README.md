@@ -52,8 +52,9 @@ sudo apt update
 sudo apt upgrade -y
 Durante o processo de upgrade, o sistema informou que uma nova versão do Kernel estava disponível e que uma reinicialização era recomendada para ativá-la. Para aplicar a atualização do Kernel e garantir que o sistema operacional utilize a versão mais recente e segura, executei o comando de reinicialização:
 
+# Reinicializa o Kernel
 sudo reboot
-Após a reinicialização, conectei-me novamente à instância para confirmar que o sistema estava operando normalmente.```
+Após a reinicialização, conectei-me novamente à instância para confirmar que o sistema estava operando normalmente.
 
 
 💡 Principais Aprendizados
