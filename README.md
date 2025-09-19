@@ -1,79 +1,101 @@
-Desafio de Projeto DIO: Gerenciamento de Instância EC2 na AWS
+# Desafio de Projeto: Gerenciamento de Instâncias EC2 na AWS
 
-📝 Visão Geral do Projeto
-Este repositório documenta a execução do desafio de projeto da Digital Innovation One (DIO) sobre o gerenciamento prático de uma instância EC2 na Amazon Web Services (AWS). O objetivo foi aplicar os conceitos de criação, configuração, acesso e gerenciamento do ciclo de vida de um servidor virtual na nuvem, registrando todo o processo como um guia e portfólio técnico.   
+<p align="center">
+  <img src="https://img.shields.io/badge/STATUS-CONCLUÍDO-green?style=for-the-badge" alt="Status Concluído"/>
+  <img src="https://img.shields.io/badge/Tecnologia-AWS-orange?style=for-the-badge" alt="Tecnologia AWS"/>
+  <img src="https://img.shields.io/badge/Serviço-EC2-yellow?style=for-the-badge" alt="Serviço EC2"/>
+</p>
 
-📖 Índice
-Arquitetura da Solução
+Repositório criado para documentar a execução do **Desafio de Projeto da [DIO](https://www.dio.me/)** sobre o gerenciamento de instâncias **EC2** na **Amazon Web Services (AWS)**. O objetivo deste laboratório foi aplicar os conhecimentos adquiridos para criar, conectar e gerenciar uma máquina virtual na nuvem, documentando cada passo do processo.
 
-Procedimento Passo a Passo
+---
 
-Principais Aprendizados
+### 👩‍💻 Autora
 
-Autor
+| Nome                | GitHub                                       | LinkedIn                                                       |
+| ------------------- | -------------------------------------------- | -------------------------------------------------------------- |
+| Ana Leticia de Araujo | [@analeticiaraujo](https://github.com/analeticiaraujo) | [Ana Leticia de Araujo](https://www.linkedin.com/in/ana-leticia-de-araujo) |
 
-🏗️ Arquitetura da Solução
-A arquitetura implementada neste laboratório é fundamental para a computação em nuvem. Consiste em uma única instância EC2 (servidor virtual) implantada em uma sub-rede pública dentro da Virtual Private Cloud (VPC) padrão da AWS. O acesso à instância é protegido por um Security Group que atua como um firewall, permitindo tráfego SSH (porta 22) apenas de fontes autorizadas, garantindo uma conexão segura.
+---
 
-🚀 Procedimento Passo a Passo
-Esta seção detalha as etapas executadas para completar o desafio, desde a criação dos recursos na AWS até a configuração final do servidor.
+## 📜 Índice
 
-1. Criação da Instância EC2
-A instância foi provisionada através do console da AWS com as seguintes configurações para se manter no Nível Gratuito (Free Tier):
+* [Visão Geral do Desafio](#-visão-geral-do-desafio)
+* [Passo 1: Criação da Instância EC2](#-passo-1-criação-da-instância-ec2)
+* [Passo 2: Conexão com a Instância via SSH](#-passo-2-conexão-com-a-instância-via-ssh)
+* [Passo 3: Atualização e Gerenciamento do Servidor](#-passo-3-atualização-e-gerenciamento-do-servidor)
+* [Conclusão e Aprendizados](#-conclusão-e-aprendizados)
 
-AMI (Amazon Machine Image): Ubuntu Server, elegível para o Nível Gratuito.
+---
 
-Tipo de Instância: t3.micro, oferecendo recursos suficientes para o laboratório sem gerar custos.   
+## 🎯 Visão Geral do Desafio
 
-Par de Chaves (Key Pair): Um novo par de chaves foi criado e o arquivo .pem foi baixado para permitir o acesso seguro via SSH.
+Este projeto prático teve como objetivo consolidar os conhecimentos sobre o serviço **Elastic Compute Cloud (EC2)** da AWS. O desafio consistiu em provisionar uma instância Linux, conectar-se a ela de forma remota e realizar as primeiras configurações, documentando todo o processo para servir como material de consulta e portfólio.
 
-Configuração do Security Group: Foi criado um novo Security Group com uma regra de entrada (inbound rule) para permitir tráfego na porta 22 (SSH) a partir do meu IP, restringindo o acesso ao meu ambiente de desenvolvimento.
+---
 
-2. Conexão com a Instância via SSH
-A conexão foi estabelecida utilizando o cliente SSH nativo do Windows (CMD). O endereço IPv4 Público da instância foi obtido no painel do EC2 e, no terminal, executei o seguinte comando para conectar:bash
-ssh -i ".pem" ubuntu@
+## 🚀 Passo 1: Criação da Instância EC2
 
+A primeira etapa foi a criação da máquina virtual no painel da AWS. A tabela abaixo detalha as configurações utilizadas:
 
-A conexão foi estabelecida com sucesso, validando que a configuração da instância e do *Security Group* estavam corretas, como mostra a imagem abaixo.
+| Configuração              | Escolha                                                                                                      | Descrição                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| **AMI** | `Amazon Linux`                                                                                               | Imagem de máquina padrão da AWS, otimizada para o ambiente e elegível no *Free Tier*.                 |
+| **Tipo de Instância** | `t3.micro`                                                                                                   | Instância com bom equilíbrio de recursos para aprendizado e testes, também coberta pelo *Free Tier*. |
+| **Par de Chaves** | Novo par de chaves `.pem`                                                                                    | Arquivo de chave privada essencial para a autenticação segura via SSH.                                |
+| **Security Group** | Personalizado                                                                                                | Regra de firewall configurada para permitir tráfego de entrada na **porta 22 (SSH)** apenas do meu IP. |
 
-![Captura conexão](https://github.com/user-attachments/assets/6e2c26c0-bcfb-4743-b7b9-01971c2bd66b)
+---
 
-### 3. Atualização e Gerenciamento do Servidor
+## 💻 Passo 2: Conexão com a Instância via SSH
 
-Após o primeiro acesso, realizei a atualização dos pacotes do sistema operacional para garantir que todos os softwares estivessem com as últimas correções de segurança.
+Com a instância em estado de *Running*, o próximo passo foi a conexão remota. Como utilizei o sistema operacional **Windows**, a conexão foi realizada através do **Prompt de Comando (CMD)**.
 
-# Atualiza a lista de pacotes disponíveis
-sudo apt update
+1.  **Obtenção do IP Público:** No painel do EC2, identifiquei o endereço de **IPv4 público** da instância.
+2.  **Comando de Conexão:** Utilizei o seguinte comando `ssh` para estabelecer a conexão:
 
-# Instala as atualizações dos pacotes
-sudo apt upgrade -y
+    ```bash
+    ssh -i "caminho/para/sua-chave.pem" ec2-user@SEU_IP_PUBLICO
+    ```
+    * `ssh`: Ferramenta para acesso remoto seguro.
+    * `-i`: Flag que especifica o arquivo de identidade (chave privada).
+    * `ec2-user`: Usuário padrão para a AMI Amazon Linux.
 
-Durante o processo de upgrade, o sistema informou que uma nova versão do Kernel estava disponível e que uma reinicialização era recomendada para ativá-la. Para aplicar a atualização do Kernel e garantir que o sistema operacional utilize a versão mais recente e segura, executei o comando de reinicialização:
+Após a execução do comando e a confirmação da autenticidade do host, a conexão foi estabelecida com sucesso.
 
-# Reinicializa o Kernel
-sudo reboot
+#### Evidência da Conexão
 
-Após a reinicialização, conectei-me novamente à instância para confirmar que o sistema estava operando normalmente.
+A captura de tela abaixo comprova o acesso bem-sucedido à instância EC2.
 
+![Captura conexão](https://github.com/user-attachments/assets/b2c443f2-6498-4b45-b898-7f08b9ff0ed3)
 
-💡 Principais Aprendizados
-Este desafio prático solidificou conceitos essenciais sobre a operação na nuvem AWS:
+---
 
-A Importância dos Security Groups: A configuração correta dos Security Groups é a primeira linha de defesa e a chave para uma conectividade bem-sucedida. Um erro de configuração aqui é a causa mais provável de problemas de acesso, como timeouts de conexão.   
+## 🛠️ Passo 3: Atualização e Gerenciamento do Servidor
 
-Gerenciamento do Ciclo de Vida: Compreendi a diferença crítica entre as ações de Parar (Stop) e Terminar (Terminate) uma instância.   
+Uma vez conectado, a primeira boa prática de gerenciamento foi garantir que todos os pacotes do sistema operacional estivessem atualizados.
 
-Ação	Impacto na Cobrança	Impacto nos Dados (Volume EBS)	Reversibilidade
-Parar (Stop)	Cessa a cobrança por computação, mas mantém a cobrança pelo armazenamento EBS.	Os dados no volume raiz são preservados.	Ação reversível. A instância pode ser iniciada novamente.
-Terminar (Terminate)	Cessa todas as cobranças associadas à instância.	O volume raiz é excluído por padrão. Os dados são perdidos.	Ação irreversível. A instância é permanentemente removida.
+1.  **Comando de Atualização:** Executei o comando abaixo para atualizar os pacotes.
 
-Exportar para as Planilhas
-Necessidade de Reinicialização Pós-Atualização do Kernel: Aprendi que, embora muitas atualizações no Linux não exijam reinicialização, atualizações de componentes críticos como o Kernel só entram em vigor após um reboot do sistema.
+    ```bash
+    sudo yum update -y
+    ```
 
-👨‍💻 Autor
-Feito por Ana Leticia de Araújo.
+2.  **Aviso de Atualização do Kernel:** Após a atualização, o sistema exibiu uma mensagem importante:
 
-LinkedIn: https://www.linkedin.com/in/ana-leticia-de-araujo
+    > *"Newer kernel available... Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting."*
 
-GitHub: https://github.com/analeticiaraujo
+    Isso indica que o *coração* do sistema operacional (Kernel) foi atualizado, mas a nova versão só será carregada após uma reinicialização.
 
+3.  **Reinicialização do Servidor:** Para aplicar o novo kernel e concluir o processo, executei o comando de reinicialização.
+
+    ```bash
+    sudo reboot
+    ```
+    A conexão SSH foi encerrada. Após alguns instantes, reconectei-me para confirmar que a instância estava novamente online e com o sistema atualizado.
+
+---
+
+## ✨ Conclusão e Aprendizados
+
+Este desafio foi uma excelente oportunidade para aplicar de forma prática os conceitos teóricos sobre a **AWS** e o serviço **EC2**. Ao final, fui capaz de entender o ciclo de vida completo de uma instância, desde sua criação, passando pela configuração de segurança, conexão remota e gerenciamento básico do sistema operacional. A documentação do processo no GitHub também reforçou a importância de manter um registro claro e estruturado de projetos de infraestrutura.
