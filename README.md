@@ -36,21 +36,21 @@ ssh -i ".pem" ubuntu@
 
 A conexão foi estabelecida com sucesso, validando que a configuração da instância e do *Security Group* estavam corretas, como mostra a imagem abaixo.
 
-!(./images/conexao-ssh-sucesso.png)
+![Captura conexão](https://github.com/user-attachments/assets/6e2c26c0-bcfb-4743-b7b9-01971c2bd66b)
 
 ### 3. Atualização e Gerenciamento do Servidor
 
 Após o primeiro acesso, realizei a atualização dos pacotes do sistema operacional para garantir que todos os softwares estivessem com as últimas correções de segurança.
 
-```bash
+bash
+
+
 # Atualiza a lista de pacotes disponíveis
 sudo apt update
 
 # Instala as atualizações dos pacotes
 sudo apt upgrade -y
 Durante o processo de upgrade, o sistema informou que uma nova versão do Kernel estava disponível e que uma reinicialização era recomendada para ativá-la. Para aplicar a atualização do Kernel e garantir que o sistema operacional utilize a versão mais recente e segura, executei o comando de reinicialização:
-
-Bash
 
 sudo reboot
 Após a reinicialização, conectei-me novamente à instância para confirmar que o sistema estava operando normalmente.```
@@ -76,3 +76,4 @@ Feito por Ana Leticia de Araújo.
 LinkedIn: https://www.linkedin.com/in/ana-leticia-de-araujo
 
 GitHub: https://github.com/analeticiaraujo
+
