@@ -53,7 +53,8 @@ Durante o processo de upgrade, o sistema informou que uma nova versão do Kernel
 Bash
 
 sudo reboot
-Após a reinicialização, conectei-me novamente à instância para confirmar que o sistema estava operando normalmente.
+Após a reinicialização, conectei-me novamente à instância para confirmar que o sistema estava operando normalmente.```
+
 
 💡 Principais Aprendizados
 Este desafio prático solidificou conceitos essenciais sobre a operação na nuvem AWS:
